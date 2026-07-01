@@ -1,0 +1,14 @@
+export default `<!doctype html>
+<html lang="en" data-beasties-container="">
+<head>
+  <meta charset="utf-8">
+  <title>BrisvegastectWebProject</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>@layer properties;@layer theme,base,components,utilities;@layer theme{:root{--font-sans:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-mono:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--default-font-family:var(--font-sans);--default-mono-font-family:var(--font-mono)}}@layer base{*,:after,:before{box-sizing:border-box;margin:0;padding:0;border:0 solid}html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");font-feature-settings:var(--default-font-feature-settings, normal);font-variation-settings:var(--default-font-variation-settings, normal);-webkit-tap-highlight-color:transparent}}@layer utilities{}*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}:root{--navy:#1A1A2E;--orange:#E05A1A;--orange-lt:#FF8C4A;--orange-pale:#FFF0E8;--orange-mid:#F4B896;--orange-dark:#A03A08;--dark-bg:#0F0F1A;--muted-blue:#8B8BAA;--text-primary:#111111;--text-secondary:#555555;--text-muted:#888888;--surface:#ffffff;--surface-alt:#F8F7F4;--border:rgba(0,0,0,.08);--border-strong:rgba(0,0,0,.15);--radius-sm:6px;--radius:8px;--radius-lg:12px}html,body{height:100%}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:var(--text-primary);background:var(--surface)}@property --tw-rotate-x{syntax:"*";inherits:false;}@property --tw-rotate-y{syntax:"*";inherits:false;}@property --tw-rotate-z{syntax:"*";inherits:false;}@property --tw-skew-x{syntax:"*";inherits:false;}@property --tw-skew-y{syntax:"*";inherits:false;}@layer properties{@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))){*,:before,:after{--tw-rotate-x:initial;--tw-rotate-y:initial;--tw-rotate-z:initial;--tw-skew-x:initial;--tw-skew-y:initial}}}</style><link rel="stylesheet" href="styles-VCIZX53D.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-VCIZX53D.css"></noscript></head>
+<body ngcm="">
+  <app-root></app-root>
+<script src="main-OZRT3KDU.js" type="module"></script></body>
+</html>
+`;

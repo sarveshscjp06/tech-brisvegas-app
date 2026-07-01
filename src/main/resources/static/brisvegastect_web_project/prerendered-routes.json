@@ -1,0 +1,11 @@
+{
+  "routes": {
+    "/": {},
+    "/about": {},
+    "/book-call": {},
+    "/contact": {},
+    "/home": {},
+    "/how-it-works": {},
+    "/services": {}
+  }
+}
