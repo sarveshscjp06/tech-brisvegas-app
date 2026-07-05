@@ -1,8 +1,8 @@
-package com.example.registration.controller;
+package com.brisvegastech.registration.controller;
 
-import com.example.registration.dto.RegistrationRequest;
-import com.example.registration.dto.RegistrationResponse;
-import com.example.registration.service.RegistrationService;
+import com.brisvegastech.registration.dto.RegistrationRequest;
+import com.brisvegastech.registration.dto.RegistrationResponse;
+import com.brisvegastech.registration.service.RegistrationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+;
 
 @RestController
 @RequestMapping("/api/v1/registrations")

@@ -1,4 +1,4 @@
-package com.example.registration.exception;
+package com.brisvegastech.registration.exception;
 
 public class RegistrationNotFoundException extends RuntimeException {
     public RegistrationNotFoundException(Long id) {

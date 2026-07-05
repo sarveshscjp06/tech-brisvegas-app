@@ -1,4 +1,4 @@
-package com.example.registration.exception;
+package com.brisvegastech.registration.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

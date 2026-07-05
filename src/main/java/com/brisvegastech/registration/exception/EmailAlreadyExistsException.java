@@ -1,4 +1,4 @@
-package com.example.registration.exception;
+package com.brisvegastech.registration.exception;
 
 public class EmailAlreadyExistsException extends RuntimeException {
     public EmailAlreadyExistsException(String email) {

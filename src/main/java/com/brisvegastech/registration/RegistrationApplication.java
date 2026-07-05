@@ -1,4 +1,4 @@
-package com.example.registration;
+package com.brisvegastech.registration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

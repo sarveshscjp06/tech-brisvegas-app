@@ -1,6 +1,6 @@
-package com.example.registration.dto;
+package com.brisvegastech.registration.dto;
 
-import com.example.registration.entity.RegistrationEntity;
+import com.brisvegastech.registration.entity.RegistrationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

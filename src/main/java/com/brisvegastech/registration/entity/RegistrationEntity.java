@@ -1,4 +1,4 @@
-package com.example.registration.entity;
+package com.brisvegastech.registration.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
