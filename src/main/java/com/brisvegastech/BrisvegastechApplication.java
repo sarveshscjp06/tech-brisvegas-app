@@ -23,6 +23,6 @@ public class BrisvegastechApplication {
     @GetMapping("/brisvegastech")
     public void redirectToHtml(HttpServletResponse response) throws IOException {
         // Redirection handled via standard servlet mechanism
-        response.sendRedirect("/brisvegastech.html");
+        response.sendRedirect("/hello-user.html");
     }
 }
