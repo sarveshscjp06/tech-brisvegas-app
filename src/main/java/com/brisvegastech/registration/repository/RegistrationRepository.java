@@ -17,5 +17,4 @@ public interface RegistrationRepository extends JpaRepository<RegistrationEntity
 
     @Query("SELECT r FROM RegistrationEntity r WHERE r.status = :status")
     java.util.List<RegistrationEntity> findAllByStatus(@Param("status") RegistrationEntity.RegistrationStatus status);
-
 }
