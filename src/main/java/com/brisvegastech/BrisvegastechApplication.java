@@ -22,13 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BrisvegastechApplication {
 
     public static void main(String[] args) {
-        try {
-            UCPDataSource uds = new UCPDataSource();
-            uds.testConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         SpringApplication.run(BrisvegastechApplication.class, args);
     }
 
@@ -41,6 +34,12 @@ public class BrisvegastechApplication {
     @GetMapping("/brisvegastech")
     public void redirectToHtml(HttpServletResponse response) throws IOException {
         // Redirection handled via standard servlet mechanism
+        try {
+            UCPDataSource uds = new UCPDataSource();
+            uds.testConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         response.sendRedirect("/brisvegastech_web.html");
     }
 }
