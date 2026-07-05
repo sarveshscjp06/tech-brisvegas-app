@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: springboot-registration
+    name: tech-brisvegas-app
 
   # ---------------------------------------------------------
   # Oracle Data Source Configuration
@@ -14,7 +14,7 @@ spring:
     url: ${DB_URL:jdbc:oracle:thin:@(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=ge9bf8133738252_brisvegasdb_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))}
     username: ${DB_USERNAME:ADMIN}
     password: ${DB_PASSWORD:BrisVegas_2106_db}
-    driver-class-name:  oracle.jdbc.OracleDriver
+    driver-class-name:  oracle.jdbc.replay.OracleConnectionPoolDataSourceImpl
     hikari:
       minimum-idle: 5
       maximum-pool-size: 15
@@ -43,7 +43,7 @@ management:
         include: health,info
   endpoint:
     health:
-      show-details: always
+      show-details: ALWAYS
 
 logging:
   level:
