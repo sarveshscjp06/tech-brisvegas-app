@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -28,25 +27,18 @@ import java.sql.SQLException;
 public class BrisvegastechApplication {
 
     public static void main(String[] args) {
+        SpringApplication.run(BrisvegastechApplication.class, args);
+    }
+
+    @GetMapping("/brisvegastech")
+    public void redirectToHtml(HttpServletResponse response) throws IOException {
+        // Redirection handled via standard servlet mechanism
         try {
             UCPDataSource uds = new UCPDataSource();
             uds.testConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        SpringApplication.run(BrisvegastechApplication.class, args);
-    }
-
-    @RequestMapping
-    public void home(HttpServletResponse response) throws IOException {
-        // Redirection handled via standard servlet mechanism
-        response.sendRedirect("/hello-user.html");
-    }
-
-    @GetMapping("/brisvegastech")
-    public void redirectToHtml(HttpServletResponse response) throws IOException {
-        // Redirection handled via standard servlet mechanism
-        response.sendRedirect("/brisvegastech_web.html");
+        response.sendRedirect("/index.html");
     }
 }
