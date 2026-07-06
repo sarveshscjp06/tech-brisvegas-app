@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -25,12 +24,6 @@ public class BrisvegastechApplication {
         SpringApplication.run(BrisvegastechApplication.class, args);
     }
 
-    @RequestMapping
-    public void home(HttpServletResponse response) throws IOException {
-        // Redirection handled via standard servlet mechanism
-        response.sendRedirect("/hello-user.html");
-    }
-
     @GetMapping("/brisvegastech")
     public void redirectToHtml(HttpServletResponse response) throws IOException {
         // Redirection handled via standard servlet mechanism
@@ -40,6 +33,6 @@ public class BrisvegastechApplication {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/brisvegastech_web.html");
+        response.sendRedirect("/index.html");
     }
 }
