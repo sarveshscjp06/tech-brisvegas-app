@@ -17,9 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @RestController
-@ComponentScan(basePackages = {
-    "com.brisvegastech.registration"
-})
 public class BrisvegastechApplication {
 
     public static void main(String[] args) {
