@@ -1,8 +1,8 @@
 package com.brisvegastech.registration.controller;
 
-import com.example.security.dto.LoginRequest;
-import com.example.security.dto.AuthenticationResponse;
-import com.example.security.service.JwtService;
+import com.brisvegastech.registration.dto.LoginRequest;
+import com.brisvegastech.registration.dto.AuthenticationResponse;
+import com.brisvegastech.registration.service.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
