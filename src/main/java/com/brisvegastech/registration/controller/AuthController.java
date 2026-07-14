@@ -2,8 +2,11 @@ package com.brisvegastech.registration.controller;
 
 import com.brisvegastech.registration.dto.RegisterRequest;
 import com.brisvegastech.registration.service.UserService;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
