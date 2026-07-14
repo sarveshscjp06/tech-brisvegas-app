@@ -18,6 +18,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/v1/registrations").permitAll()
                 .requestMatchers("/api/public").permitAll()
                 .requestMatchers("/api/auth/register").permitAll() // Allow everyone to register!
                 .requestMatchers("/api/auth/login").authenticated() // Secured to trigger authentication
