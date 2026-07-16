@@ -22,7 +22,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/public").permitAll()
                 .requestMatchers("/api/auth/register").permitAll() // Allow everyone to register!
                 .requestMatchers("/api/auth/login").authenticated() // Secured to trigger authentication
-                .anyRequest().authenticated()
+                .requestMatchers("/api/private").authenticated() // Secured to prevent unauthenticated access
+                .anyRequest().permitAll()
             )
             .httpBasic(Customizer.withDefaults());
 
