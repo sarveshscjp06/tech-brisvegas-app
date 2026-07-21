@@ -19,10 +19,10 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody RegisterRequest request) {
+    @PostMapping("/enroll")
+    public ResponseEntity<String> enrollUser(@RequestBody EnrollRequest request) {
         try {
-            String message = userService.registerUser(request);
+            String message = userService.enrollUser(request);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

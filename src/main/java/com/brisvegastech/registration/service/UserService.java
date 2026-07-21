@@ -1,6 +1,6 @@
 package com.brisvegastech.registration.service;
 
-import com.brisvegastech.registration.dto.RegisterRequest;
+import com.brisvegastech.registration.dto.EnrollRequest;
 import com.brisvegastech.registration.entity.UserEntity;
 import com.brisvegastech.registration.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +19,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public String registerUser(RegisterRequest request) {
+    public String registerUser(EnrollRequest request) {
         // 1. Check if the username is already taken
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username is already registered!");
@@ -39,6 +39,6 @@ public class UserService {
 
         // 3. Save to database
         userRepository.save(newUser);
-        return "User registered successfully!";
+        return "User enrolled successfully!";
     }
 }

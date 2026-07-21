@@ -20,7 +20,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/v1/registrations").permitAll()
                 .requestMatchers("/api/public").permitAll()
-                .requestMatchers("/api/auth/register").permitAll() // Allow everyone to register!
+                .requestMatchers("/api/auth/enroll").permitAll() // Allow everyone to register!
                 .requestMatchers("/api/auth/login").authenticated() // Secured to trigger authentication
                 .requestMatchers("/api/private").authenticated() // Secured to prevent unauthenticated access
                 .anyRequest().permitAll()

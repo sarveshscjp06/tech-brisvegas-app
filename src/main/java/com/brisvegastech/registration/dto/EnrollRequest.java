@@ -2,7 +2,7 @@ package com.brisvegastech.registration.dto;
 
 import java.util.Set;
 
-public class RegisterRequest {
+public class EnrollRequest {
     private String username;
     private String password;
     private Set<String> roles;
