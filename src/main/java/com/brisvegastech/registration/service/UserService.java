@@ -19,7 +19,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public String registerUser(EnrollRequest request) {
+    public String enrollUser(EnrollRequest request) {
         // 1. Check if the username is already taken
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username is already registered!");

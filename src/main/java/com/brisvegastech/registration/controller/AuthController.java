@@ -1,6 +1,6 @@
 package com.brisvegastech.registration.controller;
 
-import com.brisvegastech.registration.dto.RegisterRequest;
+import com.brisvegastech.registration.dto.EnrollRequest;
 import com.brisvegastech.registration.service.UserService;
 import java.util.Map;
 import org.springframework.http.HttpStatus;
