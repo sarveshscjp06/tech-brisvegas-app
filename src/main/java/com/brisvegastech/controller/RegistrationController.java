@@ -1,8 +1,8 @@
-package com.brisvegastech.registration.controller;
+package com.brisvegastech.controller;
 
-import com.brisvegastech.registration.dto.RegistrationRequest;
-import com.brisvegastech.registration.dto.RegistrationResponse;
-import com.brisvegastech.registration.service.RegistrationService;
+import com.brisvegastech.dto.RegistrationRequest;
+import com.brisvegastech.dto.RegistrationResponse;
+import com.brisvegastech.service.RegistrationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

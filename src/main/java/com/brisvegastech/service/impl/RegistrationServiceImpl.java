@@ -1,12 +1,12 @@
-package com.brisvegastech.registration.service.impl;
+package com.brisvegastech.service.impl;
 
-import com.brisvegastech.registration.dto.RegistrationRequest;
-import com.brisvegastech.registration.dto.RegistrationResponse;
-import com.brisvegastech.registration.entity.RegistrationEntity;
-import com.brisvegastech.registration.exception.EmailAlreadyExistsException;
-import com.brisvegastech.registration.exception.RegistrationNotFoundException;
-import com.brisvegastech.registration.repository.RegistrationRepository;
-import com.brisvegastech.registration.service.RegistrationService;
+import com.brisvegastech.dto.RegistrationRequest;
+import com.brisvegastech.dto.RegistrationResponse;
+import com.brisvegastech.entity.RegistrationEntity;
+import com.brisvegastech.exception.EmailAlreadyExistsException;
+import com.brisvegastech.exception.RegistrationNotFoundException;
+import com.brisvegastech.repository.RegistrationRepository;
+import com.brisvegastech.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

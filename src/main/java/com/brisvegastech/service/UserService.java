@@ -1,8 +1,8 @@
-package com.brisvegastech.registration.service;
+package com.brisvegastech.service;
 
-import com.brisvegastech.registration.dto.EnrollRequest;
-import com.brisvegastech.registration.entity.UserEntity;
-import com.brisvegastech.registration.repository.UserRepository;
+import com.brisvegastech.dto.EnrollRequest;
+import com.brisvegastech.entity.UserEntity;
+import com.brisvegastech.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +22,19 @@ public class UserService {
     public String enrollUser(EnrollRequest request) {
         // 1. Check if the username is already taken
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            throw new RuntimeException("Username is already registered!");
+            throw new RuntimeException("Username is already enrolled!");
         }
 
         // 2. Map DTO to Entity and hash the plaintext password
         UserEntity newUser = new UserEntity();
         newUser.setUsername(request.getUsername());
         newUser.setPassword(passwordEncoder.encode(request.getPassword())); // Crucial security step
+        newUser.setEmail(request.getEmail());
+        newUser.setMobile(request.getMobile());
         
         // Assign default 'USER' role if none are provided
         if (request.getRoles() == null || request.getRoles().isEmpty()) {
-            newUser.setRoles(Set.of("USER"));
+            newUser.setRoles(Set.of("GUEST_USER"));
         } else {
             newUser.setRoles(request.getRoles());
         }

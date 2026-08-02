@@ -1,7 +1,7 @@
-package com.brisvegastech.registration.service;
+package com.brisvegastech.service;
 
-import com.brisvegastech.registration.dto.RegistrationRequest;
-import com.brisvegastech.registration.dto.RegistrationResponse;
+import com.brisvegastech.dto.RegistrationRequest;
+import com.brisvegastech.dto.RegistrationResponse;
 
 import java.util.List;
 

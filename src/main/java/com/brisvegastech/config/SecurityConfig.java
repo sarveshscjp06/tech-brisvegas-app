@@ -1,4 +1,4 @@
-package com.brisvegastech.registration.config;
+package com.brisvegastech.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

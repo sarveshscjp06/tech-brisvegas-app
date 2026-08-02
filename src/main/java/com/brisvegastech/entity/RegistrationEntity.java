@@ -1,4 +1,4 @@
-package com.brisvegastech.registration.entity;
+package com.brisvegastech.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.brisvegastech.registration.repository;
+package com.brisvegastech.repository;
 
-import com.brisvegastech.registration.entity.UserEntity;
+import com.brisvegastech.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

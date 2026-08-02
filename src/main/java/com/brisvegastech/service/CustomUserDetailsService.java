@@ -1,7 +1,7 @@
-package com.brisvegastech.registration.service;
+package com.brisvegastech.service;
 
-import com.brisvegastech.registration.entity.UserEntity;
-import com.brisvegastech.registration.repository.UserRepository;
+import com.brisvegastech.entity.UserEntity;
+import com.brisvegastech.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
