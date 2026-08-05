@@ -15,6 +15,9 @@ public class AuthController {
 
     private final UserService userService;
 
+    @Autowired
+    private EmailService emailService;
+
     public AuthController(UserService userService) {
         this.userService = userService;
     }
@@ -23,6 +26,14 @@ public class AuthController {
     public ResponseEntity<String> enrollUser(@RequestBody EnrollRequest request) {
         try {
             String message = userService.enrollUser(request);
+
+            if (message != null) {
+                String body = "<p>Kindly click / tap on below link to verify your email address.</p>"
+                        + "<a href=http://140.238.250.40:8888/api/auth/doemailverification?userName=" + request.getUsername() + "&email=" + request.getEmail() + "><b>" + request.getPassword() + "</b></a>";
+                emailService.sendSimpleEmail(email, "BrivegasTech: email verification", body);
+                response = "true";
+            }
+
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -38,5 +49,33 @@ public class AuthController {
             "username", userDetails.getUsername(),
             "roles", userDetails.getAuthorities()
         ));
+    }
+
+    @RequestMapping(value = "/doemailverification", method = RequestMethod.GET)
+    public String doVerifyEmail(@RequestParam("userName") String userName, @RequestParam("email") String email) {
+        String verificationStatus = "e-mail verification failure. May be server is down. "
+                .concat("Kindly contact to admin on email: sarvesh@brisvegastech.com");
+        try {
+            if (userService.updateUserForEmailVerification(userName, email)) {
+                verificationStatus = "e-mail verification successful. Thank you!";
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BrisvegastechApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return verificationStatus;
+    }
+
+    @RequestMapping(value = "/domobileverification", method = RequestMethod.GET)
+    public String doVerifyMobile(@RequestParam("userName") String userName, @RequestParam("email") String email, @RequestParam("mobile") long mobile) {
+        String verificationStatus = "mobile no verification failure. May be server is down. "
+                .concat("Kindly contact to admin on mobile: +919312181442.");
+        try {
+            if (userService.updateUserForMobileVerification(userName, email, mobile)) {
+                verificationStatus = "mobile verification successful. Thank you!";
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BrisvegastechApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return verificationStatus;
     }
 }

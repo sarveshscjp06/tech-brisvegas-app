@@ -38,6 +38,12 @@ public class UserEntity {
     @Column(name = "role")
     private Set<String> roles;
 
+    @Column(length = 1, nullable = false, Default = 0)
+    private Integer emailVerified;
+
+    @Column(length = 1, nullable = false, Default = 0)
+    private Integer mobileVerified;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS", length = 20, nullable = false)
     @Builder.Default

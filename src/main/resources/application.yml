@@ -35,7 +35,19 @@ spring:
         jdbc:
           batch_size: 20
     open-in-view: false
-
+  
+  mail:
+    host: ://gmail.com
+    port: 587
+    username: sarvesh.new@gmail.com
+    password: your-16-character-app-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            
 management:
   endpoints:
     web:

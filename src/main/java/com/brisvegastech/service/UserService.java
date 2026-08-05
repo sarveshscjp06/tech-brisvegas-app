@@ -43,4 +43,30 @@ public class UserService {
         userRepository.save(newUser);
         return "User enrolled successfully!";
     }
+
+    @Transactional
+    public boolean updateUserForEmailVerification(String userName, String email) {
+        UserEntity entity = userRepository.findByUsername(userName)
+                .orElseThrow(() -> new NullPointerException("data not found"));
+
+        if (!entity.getEmail().equalsIgnoreCase(email)) {
+            throw new NullPointerException("email not found");
+        }
+        entity.setEmailVerified(1);
+        UserEntity updated = userRepository.save(entity);
+        return true;
+    }
+
+    @Transactional
+    public boolean updateUserForMobileVerification(String userName, String email, Long mobile) {
+        UserEntity entity = userRepository.findByUsername(userName)
+                .orElseThrow(() -> new NullPointerException("data not found"));
+
+        if (!entity.getEmail().equalsIgnoreCase(email)) {
+            throw new NullPointerException("email not found");
+        }
+        entity.setMobileVerified(1);
+        UserEntity updated = userRepository.save(entity);
+        return true;
+    }
 }
