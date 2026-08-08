@@ -40,7 +40,7 @@ spring:
     host: ://gmail.com
     port: 587
     username: sarvesh.new@gmail.com
-    password: your-16-character-app-password
+    password: oqlyrmpttsnmrmrv
     properties:
       mail:
         smtp:

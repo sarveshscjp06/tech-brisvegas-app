@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {

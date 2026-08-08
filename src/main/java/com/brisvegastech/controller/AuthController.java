@@ -1,8 +1,12 @@
 package com.brisvegastech.controller;
 
 import com.brisvegastech.dto.EnrollRequest;
+import com.brisvegastech.service.EmailService;
 import com.brisvegastech.service.UserService;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,8 +34,7 @@ public class AuthController {
             if (message != null) {
                 String body = "<p>Kindly click / tap on below link to verify your email address.</p>"
                         + "<a href=http://140.238.250.40:8888/api/auth/doemailverification?userName=" + request.getUsername() + "&email=" + request.getEmail() + "><b>" + request.getPassword() + "</b></a>";
-                emailService.sendSimpleEmail(email, "BrivegasTech: email verification", body);
-                response = "true";
+                emailService.sendSimpleEmail(request.getEmail(), "BrivegasTech: email verification", body);
             }
 
             return new ResponseEntity<>(message, HttpStatus.CREATED);
@@ -60,7 +63,7 @@ public class AuthController {
                 verificationStatus = "e-mail verification successful. Thank you!";
             }
         } catch (Exception ex) {
-            Logger.getLogger(BrisvegastechApplication.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return verificationStatus;
     }
@@ -74,7 +77,7 @@ public class AuthController {
                 verificationStatus = "mobile verification successful. Thank you!";
             }
         } catch (Exception ex) {
-            Logger.getLogger(BrisvegastechApplication.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AuthController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return verificationStatus;
     }

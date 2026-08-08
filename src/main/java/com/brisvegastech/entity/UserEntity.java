@@ -38,10 +38,10 @@ public class UserEntity {
     @Column(name = "role")
     private Set<String> roles;
 
-    @Column(length = 1, nullable = false, Default = 0)
+    @Column(length = 1, nullable = false)
     private Integer emailVerified;
 
-    @Column(length = 1, nullable = false, Default = 0)
+    @Column(length = 1, nullable = false)
     private Integer mobileVerified;
 
     @Enumerated(EnumType.STRING)
@@ -59,6 +59,8 @@ public class UserEntity {
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
+        this.emailVerified = 0;
+        this.mobileVerified = 0;
     }
 
     @PreUpdate
