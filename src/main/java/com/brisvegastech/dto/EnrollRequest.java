@@ -14,4 +14,5 @@ public class EnrollRequest {
     private Set<String> roles;
     private String email;
     private String mobile;
+    private Set<String> status;
 }

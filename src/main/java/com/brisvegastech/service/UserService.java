@@ -39,6 +39,11 @@ public class UserService {
         } else {
             newUser.setRoles(request.getRoles());
         }
+        
+        // Assign default 'ACTIVE' status if none are provided
+        if (request.getStatus()!= null || !request.getStatus().isEmpty()) {
+            newUser.setStatus(request.getStatus().toString());
+        }
 
         // 3. Save to database
         userRepository.save(newUser);

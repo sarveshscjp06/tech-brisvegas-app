@@ -43,12 +43,10 @@ public class UserEntity {
 
     @Column(length = 1, nullable = false)
     private Integer mobileVerified;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "STATUS", length = 20, nullable = false)
-    @Builder.Default
-    private UserStatus status = UserStatus.ACTIVE;
-
+    
+    @Column(nullable = false)
+    private String status;
+    
     @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -61,6 +59,7 @@ public class UserEntity {
         this.updatedAt = LocalDateTime.now();
         this.emailVerified = 0;
         this.mobileVerified = 0;
+        this.status = UserStatus.ACTIVE.name();
     }
 
     @PreUpdate
