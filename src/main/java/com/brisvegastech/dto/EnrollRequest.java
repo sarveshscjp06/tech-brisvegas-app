@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class EnrollRequest {
     private String username;
     private String password;
-    private Set<String> roles;
+    private String roles;
     private String email;
     private String mobile;
     private Set<String> status;
