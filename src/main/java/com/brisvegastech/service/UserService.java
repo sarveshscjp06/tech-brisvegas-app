@@ -37,7 +37,7 @@ public class UserService {
         if (request.getRoles() == null || request.getRoles().isEmpty()) {
             newUser.setRoles(Set.of("GUEST_USER"));
         } else {
-            newUser.setRoles(Set.of(request.getRoles()));
+            newUser.setRoles(request.getRoles());
         }
         
         // Assign default 'ACTIVE' status if none are provided
