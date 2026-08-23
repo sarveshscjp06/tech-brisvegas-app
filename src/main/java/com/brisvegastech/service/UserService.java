@@ -5,9 +5,9 @@ import com.brisvegastech.entity.UserEntity;
 import com.brisvegastech.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -37,7 +37,7 @@ public class UserService {
         if (request.getRoles() == null || request.getRoles().isEmpty()) {
             newUser.setRoles(Set.of("GUEST_USER"));
         } else {
-            newUser.setRoles(Set.of(request.getRoles()));
+            newUser.setRoles(Set.of(request.getRoles().toString()));
         }
         
         // Assign default 'ACTIVE' status if none are provided
