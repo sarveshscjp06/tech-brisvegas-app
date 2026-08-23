@@ -1,9 +1,10 @@
 package com.brisvegastech.dto;
 
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class EnrollRequest {
     private String username;
     private String password;
-    private String roles;
+    private Set<String> roles;
     private String email;
     private String mobile;
     private Set<String> status;
