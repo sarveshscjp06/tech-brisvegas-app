@@ -15,6 +15,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private TokenRepository tokenRepository; // Your JPA PasswordResetToken repository
+
+    @Autowired
+    private JavaMailSender mailSender;
+
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -74,5 +80,97 @@ public class UserService {
         entity.setMobileVerified(1);
         UserEntity updated = userRepository.save(entity);
         return true;
+    }
+
+    // --- FORGOT PASSWORD LOGIC ---
+
+    public void createPasswordResetTokenAndSendEmail(String email) {
+        // 1. Look up user by email
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isEmpty()) {
+            return; // Exit silently to prevent user enumeration security holes
+        }
+        User user = userOptional.get();
+
+        // 2. Generate a secure, unique token
+        String token = UUID.randomUUID().toString();
+        
+        // 3. Save or update the token in the database (expires in 15 minutes)
+        PasswordResetToken resetToken = new PasswordResetToken();
+        resetToken.setToken(token);
+        resetToken.setUser(user);
+        resetToken.setExpiryDate(LocalDateTime.now().plusMinutes(15));
+        tokenRepository.save(resetToken);
+
+        // 4. Send the email
+        String resetUrl = "https://yourfrontend.com" + token;
+        String emailContent = "<p>Hello,</p>"
+                + "<p>You have requested to reset your password.</p>"
+                + "<p>Click the link below to change your password:</p>"
+                + "<p><a href=\"" + resetUrl + "\">Reset My Password</a></p>"
+                + "<br>"
+                + "<p>Note: This link will expire in 15 minutes.</p>";
+
+        sendHtmlEmail(user.getEmail(), "Password Reset Request", emailContent);
+    }
+
+    public boolean updatePasswordWithToken(String token, String newPassword) {
+        // 1. Validate the token exists
+        Optional<PasswordResetToken> tokenOptional = tokenRepository.findByToken(token);
+        if (tokenOptional.isEmpty()) {
+            return false;
+        }
+
+        PasswordResetToken resetToken = tokenOptional.get();
+
+        // 2. Check if the token has expired
+        if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+            tokenRepository.delete(resetToken); // Clean up expired token
+            return false;
+        }
+
+        // 3. Update the user's password with a hashed version
+        User user = resetToken.getUser();
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        // 4. Delete the token so it cannot be reused
+        tokenRepository.delete(resetToken);
+        return true;
+    }
+
+    // --- FORGOT USERNAME LOGIC ---
+
+    public void sendUsernameEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isEmpty()) {
+            return; // Exit silently
+        }
+        User user = userOptional.get();
+
+        String emailContent = "<p>Hello,</p>"
+                + "<p>You requested a reminder of your login credentials.</p>"
+                + "<p>Your registered username is: <strong>" + user.getUsername() + "</strong></p>";
+
+        sendHtmlEmail(user.getEmail(), "Your Username Reminder", emailContent);
+    }
+
+    // --- HELPER METHOD TO SEND EMAIL ---
+
+    private void sendHtmlEmail(String to, String subject, String htmlBody) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+            
+            helper.setFrom("no-reply@yourdomain.com");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(htmlBody, true); // Setting second parameter to true enables HTML
+
+            mailSender.send(message);
+        } catch (MessagingException e) {
+            // Log the error in production logs
+            throw new RuntimeException("Failed to send email", e);
+        }
     }
 }

@@ -16,6 +16,7 @@ import java.sql.SQLException;
  */
 @SpringBootApplication
 @RestController
+@EnableScheduling // This enables background tasks
 public class BrisvegastechApplication {
 
     public static void main(String[] args) {
