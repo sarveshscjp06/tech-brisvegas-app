@@ -114,7 +114,7 @@ public class UserService {
         tokenRepository.save(resetToken);
 
         // 4. Send the email
-        String resetUrl = "http://localhost:8888/" + token;
+        String resetUrl = "http://140.238.250.40:8888/api/auth/reset-password?token=" + token;
         String emailContent = "<p>Hello,</p>"
                 + "<p>You have requested to reset your password.</p>"
                 + "<p>Click the link below to change your password:</p>"
