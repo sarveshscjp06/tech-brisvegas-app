@@ -37,7 +37,7 @@ spring:
     open-in-view: false
   
   mail:
-    host: ://gmail.com
+    host: smtp.gmail.com
     port: 587
     username: sarvesh.new@gmail.com
     password: oqlyrmpttsnmrmrv

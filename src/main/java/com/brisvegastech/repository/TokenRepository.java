@@ -15,9 +15,8 @@ public interface TokenRepository extends JpaRepository<PasswordResetToken, Long>
     Optional<PasswordResetToken> findByToken(String token);
 
     // @Modifying and @Transactional are required for delete or update queries
-    //file name (PasswordResetToken) is not table name
     @Modifying
     @Transactional
-    @Query("DELETE FROM password_reset_tokens t WHERE t.expiryDate <= :now")
+    @Query("DELETE FROM PasswordResetToken t WHERE t.expiryDate <= :now")
     void deleteAllExpiredSince(@Param("now") LocalDateTime now);
 }

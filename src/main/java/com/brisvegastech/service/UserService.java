@@ -98,6 +98,7 @@ public class UserService {
         // 1. Look up user by email
         Optional<UserEntity> userOptional = userRepository.findByEmail(email);
         if (userOptional.isEmpty()) {
+            System.out.println("email not found: Exit silently to prevent user enumeration security holes");
             return; // Exit silently to prevent user enumeration security holes
         }
         UserEntity user = userOptional.get();
@@ -113,7 +114,7 @@ public class UserService {
         tokenRepository.save(resetToken);
 
         // 4. Send the email
-        String resetUrl = "http://brisvegastech.com" + token;
+        String resetUrl = "http://localhost:8888/" + token;
         String emailContent = "<p>Hello,</p>"
                 + "<p>You have requested to reset your password.</p>"
                 + "<p>Click the link below to change your password:</p>"
@@ -172,7 +173,7 @@ public class UserService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
             
-            helper.setFrom("no-reply@yourdomain.com");
+            helper.setFrom("no-reply@brisvegastech.com");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(htmlBody, true); // Setting second parameter to true enables HTML
