@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  *

@@ -1,6 +1,6 @@
 package com.brisvegastech.service;
 
-import com.example.demo.repository.TokenRepository;
+import com.brisvegastech.repository.TokenRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,10 @@ public class TokenCleanupService {
     @Scheduled(cron = "0 0 0 * * ?")
     public void purgeExpiredTokens() {
         log.info("Starting background cleanup of expired password reset tokens...");
-        
+
         LocalDateTime now = LocalDateTime.now();
         tokenRepository.deleteAllExpiredSince(now);
-        
+
         log.info("Expired tokens successfully purged.");
     }
 }

@@ -1,12 +1,22 @@
 package com.brisvegastech.service;
 
 import com.brisvegastech.dto.EnrollRequest;
+import com.brisvegastech.entity.PasswordResetToken;
 import com.brisvegastech.entity.UserEntity;
+import com.brisvegastech.repository.TokenRepository;
 import com.brisvegastech.repository.UserRepository;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import java.time.LocalDateTime;
+import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -86,11 +96,11 @@ public class UserService {
 
     public void createPasswordResetTokenAndSendEmail(String email) {
         // 1. Look up user by email
-        Optional<User> userOptional = userRepository.findByEmail(email);
+        Optional<UserEntity> userOptional = userRepository.findByEmail(email);
         if (userOptional.isEmpty()) {
             return; // Exit silently to prevent user enumeration security holes
         }
-        User user = userOptional.get();
+        UserEntity user = userOptional.get();
 
         // 2. Generate a secure, unique token
         String token = UUID.randomUUID().toString();
@@ -103,7 +113,7 @@ public class UserService {
         tokenRepository.save(resetToken);
 
         // 4. Send the email
-        String resetUrl = "https://yourfrontend.com" + token;
+        String resetUrl = "http://brisvegastech.com" + token;
         String emailContent = "<p>Hello,</p>"
                 + "<p>You have requested to reset your password.</p>"
                 + "<p>Click the link below to change your password:</p>"
@@ -130,7 +140,7 @@ public class UserService {
         }
 
         // 3. Update the user's password with a hashed version
-        User user = resetToken.getUser();
+        UserEntity user = resetToken.getUser();
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
 
@@ -142,11 +152,11 @@ public class UserService {
     // --- FORGOT USERNAME LOGIC ---
 
     public void sendUsernameEmail(String email) {
-        Optional<User> userOptional = userRepository.findByEmail(email);
+        Optional<UserEntity> userOptional = userRepository.findByEmail(email);
         if (userOptional.isEmpty()) {
             return; // Exit silently
         }
-        User user = userOptional.get();
+        UserEntity user = userOptional.get();
 
         String emailContent = "<p>Hello,</p>"
                 + "<p>You requested a reminder of your login credentials.</p>"
