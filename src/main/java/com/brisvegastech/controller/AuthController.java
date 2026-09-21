@@ -47,11 +47,22 @@ public class AuthController {
     // Handled natively via basic auth interceptors
     @GetMapping("/login")
     public ResponseEntity<?> login(@AuthenticationPrincipal UserDetails userDetails) {
+        // Execute a raw SQL query returning a list of Object arrays or maps
+        String sql = "SELECT sm.id, sm.name, sm.description FROM service_master sm WHERE sm.status = 'paid'";
+        List<Object[]> services = entityManager.createNativeQuery(sql).getResultList();
+        for (Object[] row : services) {
+            Object serviceId = row[0];
+            Object serviceName = row[1];
+            Object serviceDescription = row[2];
+            // Process your data here
+        }
+        
         // If the execution flow reaches this point, authentication was successful!
         return ResponseEntity.ok(Map.of(
             "message", "Login successful!",
             "username", userDetails.getUsername(),
-            "roles", userDetails.getAuthorities()
+            "roles", userDetails.getAuthorities(),
+            "services", services,
         ));
     }
 
